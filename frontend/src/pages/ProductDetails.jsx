@@ -79,7 +79,7 @@ export default function ProductDetails() {
         <div className="pd-info-side">
           <p className="section-label">{product.category}</p>
           <h1 className="pd-name">{product.name}</h1>
-          <p className="pd-price">${product.price?.toFixed(2)}</p>
+          <p className="pd-price">RS{product.price?.toFixed(2)}</p>
 
           {product.stock !== undefined && (
             <p className="pd-stock">

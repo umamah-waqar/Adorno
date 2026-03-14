@@ -181,7 +181,7 @@ export default function Admin() {
                   <p className="admin-product-name">{p.name}</p>
                   <p className="admin-product-cat">{p.category}</p>
                 </div>
-                <p className="admin-product-price">${p.price?.toFixed(2)}</p>
+                <p className="admin-product-price">RS{p.price?.toFixed(2)}</p>
                 <p className="admin-product-stock">Stock: {p.stock ?? '—'}</p>
                 <div className="admin-product-actions">
                   <button className="btn-primary" onClick={() => startEdit(p)}>Edit</button>
@@ -220,12 +220,12 @@ export default function Admin() {
               </div>
 
               <div className="form-group">
-                <label>Price ($)</label>
+                <label>Price (RS)</label>
                 <input
                   type="number"
                   value={form.price}
                   onChange={e => setForm(p => ({ ...p, price: e.target.value }))}
-                  placeholder="0.00"
+                  placeholder="000"
                   min="0"
                   step="0.01"
                   required
@@ -244,15 +244,28 @@ export default function Admin() {
                 />
               </div>
 
-              <div className="form-group form-full">
-                <label>Image URL</label>
-                <input
-                  type="url"
-                  value={form.image}
-                  onChange={e => setForm(p => ({ ...p, image: e.target.value }))}
-                  placeholder="https://..."
-                />
-              </div>
+              <input
+  type="file"
+  accept="image/*"
+  onChange={async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      setForm((p) => ({ ...p, image: data.imageUrl })); // store URL as string
+    } catch (err) {
+      console.error("Error uploading image", err);
+    }
+  }}
+/>
 
               <div className="form-group form-full">
                 <label>Description</label>

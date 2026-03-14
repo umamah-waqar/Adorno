@@ -148,7 +148,7 @@ export default function Checkout() {
             {error && <div className="checkout-error">{error}</div>}
 
             <button type="submit" className="btn-filled checkout-submit" disabled={loading}>
-              {loading ? 'Placing Order…' : `Place Order — $${totalPrice.toFixed(2)}`}
+              {loading ? 'Placing Order…' : `Place Order — RS${totalPrice.toFixed(2)}`}
             </button>
           </form>
 
@@ -170,7 +170,7 @@ export default function Checkout() {
                     <p className="checkout-item-cat">{item.category}</p>
                   </div>
                   <span className="checkout-item-price">
-                    ${(item.price * item.quantity).toFixed(2)}
+                    RS{(item.price * item.quantity).toFixed(2)}
                   </span>
                 </div>
               ))}
@@ -178,15 +178,15 @@ export default function Checkout() {
             <div className="checkout-totals">
               <div className="checkout-total-row">
                 <span>Subtotal</span>
-                <span>${totalPrice.toFixed(2)}</span>
+                <span>RS{totalPrice.toFixed(2)}</span>
               </div>
               <div className="checkout-total-row">
                 <span>Delivery</span>
-                <span>{totalPrice >= 79 ? 'Free' : '$9.00'}</span>
+                <span>{totalPrice >= 79 ? 'Free' : 'RS9.00'}</span>
               </div>
               <div className="checkout-total-row total">
                 <span>Total</span>
-                <span>${(totalPrice >= 79 ? totalPrice : totalPrice + 9).toFixed(2)}</span>
+                <span>RS{(totalPrice >= 79 ? totalPrice : totalPrice + 9).toFixed(2)}</span>
               </div>
             </div>
           </div>

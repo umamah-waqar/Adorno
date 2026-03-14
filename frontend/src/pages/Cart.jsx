@@ -47,8 +47,8 @@ export default function Cart() {
                 <div className="cart-item-info">
                   <p className="cart-item-category">{item.category}</p>
                   <h3>{item.name}</h3>
-                  <p className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</p>
-                  <p className="cart-item-unit">${item.price?.toFixed(2)} each</p>
+                  <p className="cart-item-price">RS{(item.price * item.quantity).toFixed(2)}</p>
+                  <p className="cart-item-unit">RS{item.price?.toFixed(2)} each</p>
                 </div>
                 <div className="cart-item-controls">
                   <div className="cart-qty">
@@ -77,14 +77,14 @@ export default function Cart() {
               {items.map(item => (
                 <div key={item._id} className="cart-summary-line">
                   <span>{item.name} × {item.quantity}</span>
-                  <span>${(item.price * item.quantity).toFixed(2)}</span>
+                  <span>RS{(item.price * item.quantity).toFixed(2)}</span>
                 </div>
               ))}
             </div>
             <div className="cart-summary-divider" />
             <div className="cart-summary-total">
               <span>Total</span>
-              <span>${totalPrice.toFixed(2)}</span>
+              <span>RS{totalPrice.toFixed(2)}</span>
             </div>
             <Link to="/checkout" className="btn-filled" style={{ display: 'block', textAlign: 'center', width: '100%' }}>
               Proceed to Checkout

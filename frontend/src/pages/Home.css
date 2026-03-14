@@ -9,11 +9,22 @@
 
 .hero-bg {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #c49a7e 0%, #8b6652 40%, #3d2b1f 100%);
+  /* inset: 0;
+  background: linear-gradient(135deg, #c49a7e 0%, #8b6652 40%, #3d2b1f 100%); */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://res.cloudinary.com/dneoqeyoa/image/upload/v1773463077/bg4_moyv2l.jpg'); 
+  background-size: cover;       /* makes the image fill the area */
+  background-position: center;  /* centers the image */
+  background-repeat: no-repeat; /* don't repeat */
+  z-index: 0; 
+  opacity: 93%; 
 }
 
-.hero-arch {
+ 
+/* .hero-arch {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -22,7 +33,7 @@
   height: 640px;
   background: rgba(255,255,255,0.06);
   border-radius: 260px 260px 0 0;
-}
+} */
 
 .hero-content {
   position: relative;
@@ -105,7 +116,7 @@
   gap: 1.5rem;
   padding: 1.25rem 2.5rem;
   border-bottom: 1px solid var(--blush);
-  color: var(--text-mid);
+  color:rgba(241, 226, 211, 0.92);
 }
 
 .social-strip a {
@@ -120,7 +131,8 @@
 /* Services */
 .services {
   padding: 6rem 0;
-  background: var(--cream);
+  background: rgba(241, 226, 211, 0.92);
+  
 }
 
 .section-title {
@@ -131,9 +143,11 @@
 }
 
 .services-grid {
+     border-radius: 50% 50% 0 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 3.5rem;
+  
 }
 
 .service-card {
@@ -142,6 +156,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: inherit;
   display: block;
+  border-radius: 50% 50% 0 0;
 }
 
 .service-card:hover {
@@ -150,14 +165,23 @@
 }
 
 .service-img {
+    width: 100%;
   height: 240px;
   background: var(--blush);
-  border-radius: 110px 110px 0 0;
+  border-radius: 50% 50% 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0;
-  width: 200px;
+  margin:  0;
+  overflow: hidden;
+  
+}
+
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* makes image fill container without stretching */
 }
 
 .service-icon {
@@ -192,60 +216,29 @@
 
 /* Feature Section */
 .feature-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 500px;
-  background: var(--white);
+  display: flex;              /* side-by-side layout */
+  align-items: center; 
+  
+  background:rgba(242, 238, 235, 0.92);       /* vertically center content */
+                /* section padding */
 }
 
 .feature-content {
-  padding: 5rem 3rem 5rem 8vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0;
-}
-
-.feature-content h2 {
-  font-size: clamp(2rem, 2.5vw, 2.8rem);
-  color: var(--espresso);
-  margin-bottom: 1.5rem;
-}
-
-.feature-desc {
-  font-size: 0.85rem;
-  color: var(--text-mid);
-  line-height: 1.8;
-  max-width: 380px;
-  margin-bottom: 2.5rem;
+  flex: 1;    
+  padding:2.5rem;                /* text takes remaining space */
 }
 
 .feature-visual {
-  background: var(--blush);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: hidden;
+  flex: 1;                    /* image container takes remaining space */
+  max-width: 50%;   
+  max-height: 600px;        /* optional: limit width */
+  overflow: hidden;            /* crop if needed */
 }
 
-.feature-circle {
-  width: 340px;
-  height: 340px;
-  background: var(--sand);
-  border-radius: 50%;
-  margin-bottom: -80px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.feature-orb {
-  width: 200px;
-  height: 200px;
-  background: var(--white);
-  border-radius: 50%;
-  opacity: 0.5;
+.feature-visual .feature-img {
+  width: 100%;                /* image fills container width */
+  height: auto;               /* maintain aspect ratio */
+  object-fit: cover;         /* optional rounded corners */
 }
 
 /* Popular */
@@ -269,11 +262,6 @@
   overflow: hidden;
 }
 
-.popular-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(145deg, var(--blush), var(--sand));
-}
 
 .popular-meta {
   display: flex;

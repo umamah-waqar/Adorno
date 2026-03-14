@@ -1,0 +1,49 @@
+.allproducts-hero-bg {
+  background: linear-gradient(120deg, var(--terracotta) 0%, var(--mocha) 50%, var(--espresso) 100%) !important;
+}
+
+/* Filter Bar */
+.allproducts-filters {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 8vw;
+  border-bottom: 1px solid var(--blush);
+  background: var(--white);
+  position: sticky;
+  top: 72px;
+  z-index: 10;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.allproducts-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-btn {
+  padding: 1.1rem 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  margin-bottom: -1px;
+}
+
+.filter-btn:hover {
+  color: var(--espresso);
+}
+
+.filter-btn.active {
+  color: var(--espresso);
+  border-bottom-color: var(--terracotta);
+  font-weight: 500;
+}

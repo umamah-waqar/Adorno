@@ -6,19 +6,19 @@ const SERVICES = [
     title: 'Vases',
     path: '/vases',
     desc: 'Handcrafted ceramic and glass vases for every corner of your home.',
-    emoji: '🏺'
+    img: 'https://res.cloudinary.com/dneoqeyoa/image/upload/v1773457671/Bubble_Vase_2_qpihve.jpg'
   },
   {
     title: 'Candles',
     path: '/candles',
     desc: 'Scented soy candles that fill your space with warmth and calm.',
-    emoji: '🕯️'
+    img: 'https://res.cloudinary.com/dneoqeyoa/image/upload/v1773454391/adorno_products/xwq403eplk1bbpcfnjkx.jpg'
   },
   {
     title: 'Lamps',
     path: '/lamps',
     desc: 'Sculptural lighting that doubles as a work of art.',
-    emoji: '💡'
+    img: 'https://res.cloudinary.com/dneoqeyoa/image/upload/v1773455281/adorno_products/fvhxxhzyw4krq0eseggj.jpg'
   }
 ]
 
@@ -31,21 +31,13 @@ export default function Home() {
         <div className="hero-bg" />
         <div className="hero-arch" />
         <div className="hero-content">
-          <p className="section-label" style={{ color: 'rgba(253,250,247,0.7)' }}>Artisan Home Décor</p>
-          <h1>Curated Objects<br /><em>for Quiet Spaces</em></h1>
-          <p className="hero-sub">Free delivery on orders over $79</p>
-          <Link to="/vases" className="btn-primary" style={{ color: 'white', borderColor: 'rgba(255,255,255,0.6)' }}>
+          <br></br><br></br><br></br>
+          <p className="section-label" style={{ color: 'rgba(253,250,247,0.7)' }}>Elegant Home Decor</p>
+          <h1>Decoration Pieces<br />for <em>Quiet Spaces</em></h1>
+          <p className="hero-sub">Free delivery on orders over Rs500</p>
+          <Link to="/all-products" className="btn-primary" style={{ color: 'white', borderColor: 'rgba(255,255,255,0.6)' }}>
             Shop Now
           </Link>
-        </div>
-        <div className="hero-vase-group">
-          <div className="hero-vase vase-1" />
-          <div className="hero-vase vase-2" />
-          <div className="hero-vase vase-3" />
-        </div>
-        <div className="hero-footer-label">
-          <span>Dried Pampas Collection</span>
-          <span>→</span>
         </div>
       </section>
 
@@ -71,7 +63,7 @@ export default function Home() {
             {SERVICES.map(s => (
               <Link to={s.path} key={s.title} className="service-card">
                 <div className="service-img">
-                  <div className="service-icon">{s.emoji}</div>
+                  <img src={s.img} alt={s.title} className="service-icon"/>
                 </div>
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
@@ -88,38 +80,34 @@ export default function Home() {
           <p className="section-label">Remember your loved ones</p>
           <h2>Gift Ideas That<br />Last Longer</h2>
           <p className="feature-desc">
-            Our premium dried flower arrangements and artisan décor pieces make gifts
+            Our elegant decor pieces make gifts
             that not only look beautiful, but stand the test of time. Ask our team for your perfect match.
           </p>
-          <Link to="/vases" className="btn-primary">Let's Go</Link>
+          <Link to="/all-products" className="btn-primary">Let's Go</Link>
         </div>
         <div className="feature-visual">
-          <div className="feature-circle">
-            <div className="feature-orb" />
-          </div>
+          <img src="https://res.cloudinary.com/dneoqeyoa/image/upload/v1773454613/adorno_products/rs3ozu1sy7vwm0hdp11f.jpg" alt=" Vase" className="feature-img"/>
         </div>
       </section>
 
       {/* Popular Section */}
       <section className="popular-section">
         <div className="container">
-          <p className="section-label" style={{ textAlign: 'center' }}>Dried flower collection</p>
+          <p className="section-label" style={{ textAlign: 'center' }}>Our Minimalistic Lamps</p>
           <h2 className="section-title">See What's Popular</h2>
           <div className="popular-grid">
             {[
-              { label: 'Pampas Arrangement', likes: 609, saves: 120 },
-              { label: 'Shell & Candle Set', likes: 540, saves: 133 },
-              { label: 'Minimalist Vase', likes: 463, saves: 192 },
-              { label: 'Reed Diffuser', likes: 743, saves: 109 },
+              { label: 'Autumn Lights', purchases:90, img:'https://res.cloudinary.com/dneoqeyoa/image/upload/v1773454982/adorno_products/xuahtxtzq0lspauus098.jpg'},
+              { label: 'Moon Lamp', purchases: 104,img:"https://res.cloudinary.com/dneoqeyoa/image/upload/v1773455094/adorno_products/dpugbcjbgfutcnfgkcou.jpg" },
+              { label: 'Glow Lamp', purchases: 80, img:'https://res.cloudinary.com/dneoqeyoa/image/upload/v1773455327/adorno_products/o9nz7e52ublhrzej37yw.jpg'},
+              { label: 'Bamboo Lights', purchases: 70, img:'https://res.cloudinary.com/dneoqeyoa/image/upload/v1773455394/adorno_products/hz0ywwvu68eyjbfyfxw5.jpg' },
             ].map((item, i) => (
               <div key={i} className="popular-card">
                 <div className="popular-img">
-                  <div className="popular-placeholder" />
+                  <img src={item.img} alt={item.label} />
                 </div>
                 <div className="popular-meta">
-                  <span>♥ {item.likes}</span>
-                  <span>⊕ {item.saves}</span>
-                  <span>Share</span>
+                  <span>{item.purchases} bought</span>
                 </div>
               </div>
             ))}

@@ -14,6 +14,7 @@ import Checkout from './pages/Checkout'
 import MyOrders from './pages/MyOrders'
 import Admin from './pages/Admin'
 import { About, Contact } from './pages/Static'
+import AllProducts from './pages/AllProducts'
 
 function Layout({ children }) {
   return (
@@ -62,6 +63,7 @@ export default function App() {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/orders" element={<MyOrders />} />
+                    <Route path="/all-products" element={<AllProducts />} />
                   </Routes>
                 </Layout>
               }

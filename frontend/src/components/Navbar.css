@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(253, 250, 247, 0.92);
+  background: rgba(241, 226, 211, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--blush);
 }

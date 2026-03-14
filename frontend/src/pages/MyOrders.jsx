@@ -68,7 +68,7 @@ export default function MyOrders() {
                   <div className="order-card-head">
                     <div className="order-id">
                       <p className="order-label">Order ID</p>
-                      <p className="order-id-val">#{order._id?.slice(-8).toUpperCase() || `ORD-${i + 1}`}</p>
+                      <p className="order-id-val">#{order._id?.slice(-8).toUpperCase() || `ORD-RS{i + 1}`}</p>
                     </div>
                     <div className="order-date">
                       <p className="order-label">Date</p>
@@ -76,7 +76,7 @@ export default function MyOrders() {
                     </div>
                     <div className="order-total">
                       <p className="order-label">Total</p>
-                      <p className="order-total-val">${order.totalPrice?.toFixed(2)}</p>
+                      <p className="order-total-val">RS{order.totalPrice?.toFixed(2)}</p>
                     </div>
                     <span
                       className="order-status"
@@ -101,7 +101,7 @@ export default function MyOrders() {
                         </div>
                         {item.productId?.price && (
                           <span className="order-product-price">
-                            ${(item.productId.price * item.quantity).toFixed(2)}
+                            RS{(item.productId.price * item.quantity).toFixed(2)}
                           </span>
                         )}
                       </div>

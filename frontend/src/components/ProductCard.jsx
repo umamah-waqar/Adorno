@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
       <div className="product-card-info">
         <p className="product-card-category">{product.category}</p>
         <h3 className="product-card-name">{product.name}</h3>
-        <p className="product-card-price">${product.price?.toFixed(2)}</p>
+        <p className="product-card-price">RS{product.price?.toFixed(2)}</p>
       </div>
     </Link>
   )
