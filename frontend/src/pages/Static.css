@@ -1,0 +1,127 @@
+.static-page {
+  padding-top: 72px;
+}
+
+.static-hero {
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.static-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, var(--mocha), var(--espresso));
+}
+
+.static-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 8vw;
+}
+
+.static-hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--white);
+}
+
+.static-body {
+  padding-top: 5rem;
+  padding-bottom: 6rem;
+}
+
+.static-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.static-text h2 {
+  font-size: 2.2rem;
+  color: var(--espresso);
+  margin-bottom: 1.5rem;
+}
+
+.static-text p {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.9;
+  margin-bottom: 1rem;
+}
+
+.static-visual {
+  height: 400px;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.static-arch {
+  width: 280px;
+  height: 320px;
+  background: var(--blush);
+  border-radius: 140px 140px 0 0;
+}
+
+.static-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.static-value-card {
+  background: var(--cream);
+  padding: 2rem;
+  border-top: 3px solid var(--terracotta);
+}
+
+.static-value-card h3 {
+  font-size: 1.4rem;
+  color: var(--espresso);
+  margin-bottom: 0.75rem;
+}
+
+.static-value-card p {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+/* Contact */
+.contact-details {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-details p:last-child {
+  font-size: 0.88rem;
+  color: var(--espresso);
+  margin-top: 0.25rem;
+}
+
+.contact-form-side {
+  background: var(--cream);
+  padding: 2.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .static-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .static-values { grid-template-columns: 1fr; }
+  .static-visual { height: 200px; }
+}

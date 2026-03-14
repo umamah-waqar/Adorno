@@ -1,0 +1,188 @@
+.pd-page {
+  padding-top: 100px;
+  padding-bottom: 5rem;
+}
+
+.pd-breadcrumb {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.05em;
+}
+
+.pd-breadcrumb a {
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+
+.pd-breadcrumb a:hover {
+  color: var(--terracotta);
+}
+
+.pd-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.pd-image-wrap {
+  aspect-ratio: 3/4;
+  background: var(--cream);
+  overflow: hidden;
+  position: sticky;
+  top: 100px;
+}
+
+.pd-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.pd-image-wrap:hover img {
+  transform: scale(1.04);
+}
+
+.pd-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sand);
+  background: var(--cream);
+}
+
+.pd-info-side {
+  padding-top: 1rem;
+}
+
+.pd-name {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  color: var(--espresso);
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+
+.pd-price {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--mocha);
+  margin-bottom: 1rem;
+}
+
+.pd-stock {
+  font-size: 0.78rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+.in-stock { color: #4a7c59; }
+.out-stock { color: #c0392b; }
+
+.pd-desc {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.9;
+  margin-bottom: 2.5rem;
+  border-top: 1px solid var(--blush);
+  padding-top: 1.5rem;
+}
+
+.pd-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.pd-qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--blush);
+  background: var(--cream);
+}
+
+.pd-qty button {
+  width: 42px;
+  height: 48px;
+  font-size: 1.1rem;
+  color: var(--espresso);
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.pd-qty button:hover {
+  background: var(--blush);
+}
+
+.pd-qty span {
+  width: 48px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--espresso);
+}
+
+.pd-add-btn {
+  flex: 1;
+  min-width: 160px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.pd-add-btn.added {
+  background: #4a7c59;
+  border-color: #4a7c59;
+}
+
+.pd-cart-link {
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  font-size: 0.72rem;
+}
+
+.pd-meta {
+  border-top: 1px solid var(--blush);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pd-meta p {
+  font-size: 0.8rem;
+  color: var(--text-mid);
+}
+
+.pd-meta strong {
+  color: var(--espresso);
+  font-weight: 500;
+}
+
+.pd-loading,
+.pd-error {
+  padding-top: 180px;
+  text-align: center;
+  padding-bottom: 5rem;
+}
+
+.pd-error p {
+  color: var(--text-mid);
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .pd-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .pd-image-wrap {
+    position: static;
+    aspect-ratio: 4/3;
+  }
+}

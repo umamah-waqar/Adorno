@@ -1,0 +1,139 @@
+.category-page {
+  padding-top: 72px;
+}
+
+.category-hero {
+  position: relative;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.category-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, var(--mocha) 0%, var(--espresso) 100%);
+}
+
+.category-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 8vw;
+  max-width: 600px;
+}
+
+.category-hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.category-hero-content p {
+  font-size: 0.88rem;
+  color: rgba(253, 250, 247, 0.7);
+  line-height: 1.7;
+  max-width: 420px;
+}
+
+.category-hero-icon {
+  position: absolute;
+  right: 8vw;
+  font-size: 8rem;
+  opacity: 0.12;
+  z-index: 0;
+  user-select: none;
+}
+
+.category-body {
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+}
+
+.category-count {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem 1.75rem;
+}
+
+.category-loading {
+  text-align: center;
+  padding: 5rem 0;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sand);
+  animation: dot-bounce 1.2s infinite;
+}
+
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+}
+
+.loading-dots + p {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.category-error {
+  text-align: center;
+  padding: 3rem;
+  color: #c0392b;
+  font-size: 0.85rem;
+  background: #fde8e8;
+  border: 1px solid #f5c6c6;
+}
+
+.category-empty {
+  text-align: center;
+  padding: 6rem 0;
+}
+
+.category-empty h3 {
+  font-size: 2rem;
+  color: var(--espresso);
+  margin-bottom: 0.75rem;
+}
+
+.category-empty p {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+}
+
+@media (max-width: 1100px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .category-hero { height: 260px; }
+}
+
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: 1fr; }
+}
