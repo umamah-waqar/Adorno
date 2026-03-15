@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/AuthContext'
 import './ProductDetails.css'
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 export default function ProductDetails() {
   const { id } = useParams()
@@ -17,7 +18,7 @@ export default function ProductDetails() {
   const [added, setAdded] = useState(false)
 
   useEffect(() => {
-    fetch(`/api/products/${id}`)
+    fetch(`${API_BASE_URL}/api/products/${id}`)
       .then(r => r.json())
       .then(data => setProduct(data))
       .catch(() => setError('Product not found.'))

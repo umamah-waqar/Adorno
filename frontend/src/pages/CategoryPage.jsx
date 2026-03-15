@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
 import './CategoryPage.css'
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 const CATEGORY_META = {
   vases: {
@@ -36,7 +37,7 @@ export default function CategoryPage({ category: propCategory }) {
   useEffect(() => {
     setLoading(true)
     setError('')
-    fetch('/api/products')
+    fetch(`${API_BASE_URL}/api/products`)
       .then(r => r.json())
       .then(data => {
         const all = Array.isArray(data) ? data : data.products || []

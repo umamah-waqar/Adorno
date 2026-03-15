@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/AuthContext'
 import './Checkout.css'
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 export default function Checkout() {
   const { items, totalPrice, clearCart } = useCart()
@@ -47,7 +48,7 @@ export default function Checkout() {
     }
 
     try {
-      const res = await fetch('/api/orders', {
+      const res = await fetch(`${API_BASE_URL}/api/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

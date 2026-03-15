@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import './MyOrders.css'
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 const STATUS_COLOR = {
   pending:    { bg: '#fef3cd', color: '#856404' },
@@ -23,7 +24,7 @@ export default function MyOrders() {
       navigate('/login')
       return
     }
-    fetch('/api/orders/myorders', {
+    fetch( `${API_BASE_URL}/api/orders/myorders`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(r => r.json())

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import ProductCard from '../components/ProductCard'
 import '../pages/CategoryPage.css'
 import './AllProducts.css'
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+
 
 const CATEGORIES = ['all', 'vases', 'candles', 'lamps']
 
@@ -13,7 +15,7 @@ export default function AllProducts() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    fetch('/api/products')
+    fetch(`${API_BASE_URL}/api/products`)
       .then(r => r.json())
       .then(data => {
         const all = Array.isArray(data) ? data : data.products || []
