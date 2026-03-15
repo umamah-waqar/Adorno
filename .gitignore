@@ -6,3 +6,5 @@ frontend/dist/
 frontend/build/
 frontend/.env
 backend/.env
+adornoumamah.pem
+*.pem
