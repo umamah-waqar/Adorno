@@ -2,7 +2,6 @@ pipeline {
     agent any
     
     environment {
-        // This will be stored as a secret in Jenkins
         MONGODB_URI = credentials('mongodb-uri')
     }
     
@@ -51,22 +50,17 @@ pipeline {
         }
         
         stage('Deploy with Docker Compose') {
-    steps {
-        echo 'Deploying application on port 5001...'
-        script {
-            // Create backend directory and .env file
-            sh """
-                mkdir -p backend
-                cat > backend/.env << EOF
-MONGODB_URI=${MONGODB_URI}
-PORT=5000
-NODE_ENV=production
-EOF
-            """
-            sh 'docker compose -f docker-compose-jenkins.yml up -d --build'
+            steps {
+                echo 'Deploying application on port 5001...'
+                script {
+                    sh """
+                        export MONGODB_URI=${MONGODB_URI}
+                        docker compose -f docker-compose-jenkins.yml up -d --build
+                    """
+                }
+            }
         }
-    }
-}        
+        
         stage('Verify Deployment') {
             steps {
                 echo 'Verifying containers are running...'
@@ -81,10 +75,10 @@ EOF
     
     post {
         success {
-            echo 'Pipeline successful! App running on port 5001'
+            echo '✅ Pipeline successful! App running on port 5001'
         }
         failure {
-            echo 'Pipeline failed! Check the logs above.'
+            echo '❌ Pipeline failed! Check the logs above.'
         }
     }
 }
