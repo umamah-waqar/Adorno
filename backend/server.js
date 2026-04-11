@@ -36,8 +36,9 @@ export default router;
 
 dotenv.config();
 const app = express();
+
 app.use(cors({
-  origin: 'http://adorno-frontend-umamah.s3-website-us-east-1.amazonaws.com',
+  origin: true,
   credentials: true
 }));
 
