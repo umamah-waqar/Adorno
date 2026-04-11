@@ -1,0 +1,37 @@
+
+
+services:
+  backend-part2:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: adorno-backend-part2
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./backend/.env         
+    restart: unless-stopped
+    networks:
+      - adorno-network-part2
+
+  frontend-part2:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: adorno-frontend-part2
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend/build:/usr/share/nginx/html
+    depends_on:
+      - backend-part2
+    restart: unless-stopped
+    networks:
+      - adorno-network-part2
+
+networks:
+  adorno-network-part2:
+    driver: bridge
