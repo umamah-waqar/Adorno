@@ -9,6 +9,7 @@ import orderRouter from './routes/orderRoutes.js';
 import {upload} from "./middleware/upload.js";
 import {cloudinary} from "./config/cloudinary.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+const router = express.Router();
 
 router.post("/", upload.single("image"), async (req, res) => {
   try {
