@@ -51,19 +51,22 @@ pipeline {
         }
         
         stage('Deploy with Docker Compose') {
-            steps {
-                echo 'Deploying application on port 5001...'
-                script {
-                    // Create .env file from Jenkins credential
-                    sh """
-                        echo "MONGODB_URI=${MONGODB_URI}" > .env.production
-                    """
-                    // Start containers
-                    sh 'docker compose -f docker-compose-jenkins.yml up -d --build'
-                }
-            }
+    steps {
+        echo 'Deploying application on port 5001...'
+        script {
+            // Create backend directory and .env file
+            sh """
+                mkdir -p backend
+                cat > backend/.env << EOF
+MONGODB_URI=${MONGODB_URI}
+PORT=5000
+NODE_ENV=production
+EOF
+            """
+            sh 'docker compose -f docker-compose-jenkins.yml up -d --build'
         }
-        
+    }
+}        
         stage('Verify Deployment') {
             steps {
                 echo 'Verifying containers are running...'

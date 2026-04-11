@@ -38,7 +38,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: true,
+  origin: true,  // This allows ANY origin
   credentials: true
 }));
 
