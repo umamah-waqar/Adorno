@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import './Auth.css'
 
+
 export default function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()

@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema({
     }
   ],
   totalPrice:{type:Number,required:true},
-  email: { type: String, required: true },       // user email at checkout
+  email: { type: String, required: true },      
   contactnum: { type: String, required: true },
   address: { type: String, required: true },
   paymentMethod: { type: String, default: "Cash on Delivery" },
