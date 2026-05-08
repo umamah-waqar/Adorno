@@ -62,11 +62,11 @@ pipeline {
                                 pip install selenium && \
                                 apt-get update && \
                                 apt-get install -y wget gnupg unzip && \
-                                wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+                                wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google.gpg && \
                                 echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list.d/google.list && \
                                 apt-get update && \
                                 apt-get install -y google-chrome-stable && \
-                                wget -N https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/120.0.6099.109/linux64/chromedriver-linux64.zip && \
+                                wget -N https://storage.googleapis.com/chrome-for-testing-public/121.0.6167.85/linux64/chromedriver-linux64.zip && \
                                 unzip -o chromedriver-linux64.zip && \
                                 mv chromedriver-linux64/chromedriver /usr/local/bin/ && \
                                 chmod +x /usr/local/bin/chromedriver && \
