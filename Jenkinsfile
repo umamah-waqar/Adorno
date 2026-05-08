@@ -26,10 +26,10 @@ pipeline {
             steps {
                 echo 'Deploying application...'
                 script {
-                    sh """
-                        export MONGODB_URI=${MONGODB_URI}
+                    sh '''
                         docker compose up -d --build
-                    """
+                        sleep 15
+                    '''
                 }
             }
         }
@@ -39,8 +39,6 @@ pipeline {
                 echo 'Verifying containers are running...'
                 script {
                     sh 'docker compose ps'
-                    sh 'sleep 10'
-                    sh 'curl -f http://localhost:5001 || echo "Backend check failed"'
                     sh 'curl -f http://localhost:8081 || echo "Frontend check failed"'
                 }
             }
@@ -50,56 +48,41 @@ pipeline {
             steps {
                 echo 'Running 15 Selenium test cases...'
                 script {
-                    // CHANGE THIS TO YOUR ACTUAL GITHUB USERNAME
-                    def TEST_REPO = "https://github.com/YOUR_USERNAME/adorno-tests.git"
-                    
-                    sh """
+                    sh '''
                         rm -rf /tmp/adorno-tests
-                        git clone ${TEST_REPO} /tmp/adorno-tests
+                        git clone https://github.com/umamah-waqar/adorno-tests.git /tmp/adorno-tests
                         cd /tmp/adorno-tests
                         
-                        # CHANGE THIS TO YOUR ACTUAL EC2 PUBLIC IP
-                        export APP_URL="http://YOUR_EC2_PUBLIC_IP:8081"
-                        
                         docker run --rm \
-                            -v \$PWD:/tests \
-                            -e APP_URL=\${APP_URL} \
+                            -v $PWD:/tests \
+                            -e APP_URL=http://13.127.212.177:8081 \
                             --network host \
                             python:3.9-slim \
                             bash -c "
-                                pip install selenium && \\
-                                apt-get update && \\
-                                apt-get install -y wget gnupg unzip && \\
-                                wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \\
-                                echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list.d/google.list && \\
-                                apt-get update && \\
-                                apt-get install -y google-chrome-stable && \\
-                                wget -N https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/120.0.6099.109/linux64/chromedriver-linux64.zip && \\
-                                unzip -o chromedriver-linux64.zip && \\
-                                mv chromedriver-linux64/chromedriver /usr/local/bin/ && \\
-                                chmod +x /usr/local/bin/chromedriver && \\
-                                cd /tests && \\
+                                pip install selenium && \
+                                apt-get update && \
+                                apt-get install -y wget gnupg unzip && \
+                                wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google.gpg && \
+                                echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list.d/google.list && \
+                                apt-get update && \
+                                apt-get install -y google-chrome-stable && \
+                                wget -N https://storage.googleapis.com/chrome-for-testing-public/148.0.7778.97/linux64/chromedriver-linux64.zip && \
+                                unzip -o chromedriver-linux64.zip && \
+                                mv chromedriver-linux64/chromedriver /usr/local/bin/ && \
+                                chmod +x /usr/local/bin/chromedriver && \
+                                cd /tests && \
                                 python test_adorno.py
                             "
-                    """
+                    '''
                 }
             }
             post {
                 always {
                     script {
                         def email = sh(script: "git --no-pager show -s --format='%ae' HEAD", returnStdout: true).trim()
-                        
                         emailext (
                             subject: "Selenium Test Results: ${env.JOB_NAME} - Build ${env.BUILD_NUMBER}",
-                            body: """
-                                Build URL: ${env.BUILD_URL}
-                                Application URL: http://YOUR_EC2_PUBLIC_IP:8081
-                                
-                                Selenium tests have completed.
-                                Check console output for detailed results.
-                                
-                                15 test cases were executed on your Adorno website.
-                            """,
+                            body: "Tests completed. Check ${env.BUILD_URL}",
                             to: email
                         )
                     }
@@ -110,7 +93,7 @@ pipeline {
     
     post {
         success {
-            echo '✅ Pipeline successful! App running on port 8081 (frontend) and 5001 (backend)'
+            echo '✅ Pipeline successful! App running on port 8081'
         }
         failure {
             echo '❌ Pipeline failed! Check the logs above.'
