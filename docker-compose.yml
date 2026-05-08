@@ -1,15 +1,16 @@
-
-
 services:
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: adorno-backend-part1
+    container_name: adorno-backend
     ports:
-      - "5000:5000"
+      - "5001:5000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
     env_file:
-      - ./backend/.env          
+      - ./backend/.env         
     restart: unless-stopped
     networks:
       - adorno-network
@@ -18,9 +19,9 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: adorno-frontend-part1
+    container_name: adorno-frontend
     ports:
-      - "80:80"
+      - "8081:80"
     depends_on:
       - backend
     restart: unless-stopped
